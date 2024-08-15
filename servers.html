@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>sirdug.dev</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./servers.css">
 
 </head>
 
@@ -15,7 +15,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="#services">Games</a></li>
       <li><a href="servers.html">Servers</a></li>
-      <li><a href="#contact">AI Chatbot</a></li>
+      <li><a href="AI.html">AI Chatbot</a></li>
     </ul>
   </nav>
 
@@ -24,21 +24,39 @@
       <filter id='noiseFilter'>
         <feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch' />
       </filter>
-
       <rect width='100%' height='100%' preserveAspectRatio="xMidYMid meet" filter='url(#noiseFilter)' />
     </svg>
     <div class="content">
-
-
-      <h1>Chatbot</h1>
-      <iframe src="https://ai.sirdug.dev" width="910" height="600" style="border:1px solid black;">
-      </iframe>
-
-      <button class="button-86" role="button" href=https://ai.sirdug.dev>Go To Site</button>
-
-
+      <h1>Server Stats</h1> <!-- Moved the heading outside the chip container -->
+      <div class="chips-container"> <!-- New container for the chips -->
+        <div class="chip">
+          <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+          <li><a href="https://ai.sirdug.dev">AI Chatbot</a></li>
+        </div>
+        <div class="chip">
+          <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+          <li><a href="AI.html">Minecraft Server 1</a></li>
+        </div>
+        <div class="chip">
+          <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+          <li><a href="AI.html">Minecraft Server 2</a></li>
+        </div>
+        <div class="chip">
+            <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+            Server Status 4
+          </div>
+          <div class="chip">
+            <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+            Server Status 5
+          </div>
+          <div class="chip">
+            <img src="https://angelic-trust-production.up.railway.app/api/badge/1/status" alt="Person" width="96" height="96">
+            Server Status 6
+          </div>                    
+      </div>
     </div>
   </div>
+  
   <div class="gradient-bg">
     <svg viewBox="0 0 100vw 100vw" xmlns='http://www.w3.org/2000/svg' class="noiseBg">
       <filter id='noiseFilterBg'>
