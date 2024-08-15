@@ -45,6 +45,7 @@ h2,
 h3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
+  text-align: center;
 }
 
 .card {
@@ -358,4 +359,10 @@ p {
 
 b {
 color: (18, 113, 255);
+}
+
+iframe {
+  border-radius: 15px;
+
+
 }
