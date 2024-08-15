@@ -355,3 +355,14 @@ p {
 .navbar-menu a:hover {
   color: rgb(18, 113, 255);
 }
+
+.profile {
+  border-radius: 100%;
+}
+
+
+.pfp {
+
+border-radius: 100%;
+
+}

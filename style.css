@@ -405,3 +405,44 @@ iframe {
   text-align: center;
 
 }
+
+.profile {
+text-align: center;
+
+
+}
+
+
+.pfp {
+
+border-radius: 100%;
+justify-content: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 85%;
+border: 5px solid #555;
+}
+
+.dclink {
+color: rgb(210, 2, 210);
+text-align: center;
+padding-bottom: 10px;
+text-decoration: none;
+font-family: "Montserrat", sans-serif;
+font-weight: 700;
+transition: color 0.3s;
+cursor: pointer;
+
+}
+
+
+.creator {
+text-align: center;
+}
+
+
+.soon {
+text-align: center;
+
+}
