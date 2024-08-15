@@ -363,6 +363,39 @@ color: (18, 113, 255);
 
 iframe {
   border-radius: 15px;
+  align-items: center;
 
+}
 
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #2b2b2b;
+}
+
+.chip img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 1px solid green;
+  background-color: green;
+  border-radius: 100%;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
 }
