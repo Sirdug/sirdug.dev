@@ -405,3 +405,77 @@ iframe {
   text-align: center;
 
 }
+
+.profile {
+text-align: center;
+
+
+}
+
+
+.pfp {
+
+border-radius: 100%;
+justify-content: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 45%;
+border: 5px solid #555;
+}
+
+.dclink {
+color: rgb(210, 2, 210);
+text-align: center;
+padding-bottom: 10px;
+text-decoration: none;
+font-family: "Montserrat", sans-serif;
+font-weight: 700;
+transition: color 0.3s;
+cursor: pointer;
+
+}
+
+
+.creator {
+text-align: center;
+}
+
+
+.soon {
+text-align: center;
+
+}
+
+.lol {
+padding: 30px;
+
+}
+
+.footer1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+  background-color: rgba(8, 10, 15, 0.21); /* Slightly transparent background */
+  backdrop-filter: blur(10px); /* Blur background */
+  color: #FFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.footer2 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(8, 10, 15, 0.21); /* Slightly transparent background */
+  backdrop-filter: blur(10px); /* Blur background */
+  color: #FFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
