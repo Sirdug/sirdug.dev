@@ -44,8 +44,8 @@ var x = setInterval(function() {
   }
 }, 1000);
 
-function toggleDropdown() {
-  const dropdown = document.getElementById('aboutDropdown');
+function toggleDropdown(id) {
+  const dropdown = document.getElementById(id);
   if (dropdown.classList.contains('show')) {
     dropdown.classList.remove('show');
     dropdown.classList.add('hide');
@@ -54,3 +54,38 @@ function toggleDropdown() {
     dropdown.classList.add('show');
   }
 }
+
+function closeDropdown(id) {
+  const dropdown = document.getElementById(id);
+  dropdown.classList.remove('show');
+  dropdown.classList.add('hide');
+}
+
+function setServerStatus(serverId, isUp) {
+  const statusDot = document.getElementById(serverId);
+  if (isUp) {
+    statusDot.classList.add('green');
+    statusDot.classList.remove('red');
+  } else {
+    statusDot.classList.add('red');
+    statusDot.classList.remove('green');
+  }
+}
+
+function pingServer(ip, port, serverId) {
+  fetch(`/ping?ip=${ip}&port=${port}`)
+    .then(response => response.json())
+    .then(data => {
+      setServerStatus(serverId, data.status === 'up');
+    })
+    .catch(error => {
+      console.error('Error pinging server:', error);
+      setServerStatus(serverId, false);
+    });
+}
+
+// Example usage
+setInterval(() => {
+  pingServer('localhost', 3000, 'server1-status'); // Replace with your server IP and port
+  pingServer('192.168.1.2', 80, 'server2-status'); // Replace with your server IP and port
+}, 5000); // Ping every 5 seconds

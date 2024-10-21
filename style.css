@@ -382,6 +382,8 @@ iframe {
   line-height: 50px;
   border-radius: 25px;
   background-color: #2b2b2b;
+  position: relative;
+  margin: 10px;
 }
 
 .chip img {
@@ -522,6 +524,16 @@ padding: 30px;
   align-items: center;
 }
 
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .pokemon-image {
   width: 100px;
   height: 100px;
@@ -543,3 +555,47 @@ padding: 30px;
   font-size: 24px;
 }
 
+.game-drop-chip{
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  pading: 10px;
+}
+
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.status-dot.green {
+  background-color: green;
+  animation: blinker-green 1s linear infinite;
+}
+
+.status-dot.red {
+  background-color: rgb(255, 0, 0);
+  animation: blinker-red 1s linear infinite;
+}
+
+@keyframes blinker-green {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blinker-red {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.server-iframe{
+padding: 10px;
+
+}
