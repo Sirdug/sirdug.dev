@@ -21,51 +21,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function clicktocopy() {
-  // Get the text field
   var copyText = document.getElementById("sirdug");
-
-  // Select the text field
   copyText.select();
   copyText.setSelectionRange(0, 99999); // For mobile devices
-
-   // Copy the text inside the text field
   navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
   alert("Copied the text: " + copyText.value);
 }
 
-
-
-
-
-
-
-
 var countDownDate = new Date("August 18, 2024 12:00:00").getTime();
-
-// Update the count down every 1 second
 var x = setInterval(function() {
-
-  // Get todays date and time
   var now = new Date().getTime();
-
-  // Find the distance between now an the count down date
   var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text 
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
+
+function toggleDropdown() {
+  const dropdown = document.getElementById('aboutDropdown');
+  if (dropdown.classList.contains('show')) {
+    dropdown.classList.remove('show');
+    dropdown.classList.add('hide');
+  } else {
+    dropdown.classList.remove('hide');
+    dropdown.classList.add('show');
+  }
+}
