@@ -20,6 +20,29 @@ document.addEventListener('DOMContentLoaded', () => {
   move();
 });
 
+function leaveConf() {
+  if (isChromeOS()) {
+    window.onbeforeunload = function() {
+      return "Are you sure you want to leave?";
+    };
+  } else {
+    if (window.onbeforeunload) {
+      window.onbeforeunload = null;
+    } else {
+      window.onbeforeunload = function() {
+        return "Are you sure you want to leave?";
+      };
+    }
+  }
+}
+
+// Call the leaveConf function on page load to ensure it's enabled for Chrome OS users.
+document.addEventListener("DOMContentLoaded", leaveConf);
+
+function isChromeOS() {
+  return navigator.userAgent.includes("CrOS");
+}
+
 function clicktocopy() {
   var copyText = document.getElementById("sirdug");
   copyText.select();

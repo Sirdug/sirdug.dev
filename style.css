@@ -599,3 +599,9 @@ padding: 30px;
 padding: 10px;
 
 }
+
+.option {
+  width: 150px;
+  max-width: 150px;
+  cursor: pointer;
+}
