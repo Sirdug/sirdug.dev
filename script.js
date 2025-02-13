@@ -112,3 +112,76 @@ setInterval(() => {
   pingServer('localhost', 3000, 'server1-status'); // Replace with your server IP and port
   pingServer('192.168.1.2', 80, 'server2-status'); // Replace with your server IP and port
 }, 5000); // Ping every 5 seconds
+
+
+document.getElementById("terminal-input").addEventListener("keyup", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        let input = e.target.value.trim().toLowerCase();
+        processTerminalCommand(input);
+        e.target.value = "";
+        const terminalContent = document.getElementById("terminal-content");
+        terminalContent.scrollTop = terminalContent.scrollHeight;
+    }
+});
+
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    const timer = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            element.parentElement.scrollTop = element.parentElement.scrollHeight;
+        } else {
+            clearInterval(timer);
+        }
+    }, speed);
+}
+
+function processTerminalCommand(cmd) {
+    const terminalContent = document.getElementById("terminal-content");
+    const cmdLine = document.createElement("div");
+    cmdLine.innerHTML = '<span class="terminal-prompt">user@sirdug.dev:~$</span> ' + cmd;
+    terminalContent.appendChild(cmdLine);
+
+    const validCommands = ["help", "clear", "about"];
+
+    if (!cmd) {
+        return;
+    }
+
+    if (validCommands.includes(cmd)) {
+        if (cmd === "help") {
+            const helpDiv = document.createElement("div");
+            terminalContent.appendChild(helpDiv);
+            const helpText = `
+                \nAvailable commands:
+                \nhelp   - Show available commands
+                \nclear  - Clear the terminal screen
+                \nabout  - Show information about Sirdug`;
+            typeWriter(helpDiv, helpText, 35);
+        } else if (cmd === "clear") {
+            terminalContent.innerHTML = '<span class="terminal-prompt">user@sirdug.dev:~$</span> Welcome to sirdug.dev!\n<span class="terminal-prompt">user@sirdug.dev:~$</span> Type help for a list of commands.';
+        } else if (cmd === "about") {
+            const aboutDiv = document.createElement("div");
+            terminalContent.appendChild(aboutDiv);
+            const aboutText = `
+                \nAbout Sirdug:
+                \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                \nCreator: Sirdug
+                \nDiscord: sirdug
+                \nGitHub: sirdug
+                \nDescription: I made this junk :)
+                \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+            typeWriter(aboutDiv, aboutText, 35);
+        }
+    } else {
+        const unknownDiv = document.createElement("div");
+        terminalContent.appendChild(unknownDiv);
+        typeWriter(unknownDiv, "\nCommand not found. Type 'help' for available commands.", 50);
+    }
+}
+
+function closeDropdown(dropdownId) {
+    document.getElementById(dropdownId).style.display = "none";
+}

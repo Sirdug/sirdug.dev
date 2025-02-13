@@ -605,3 +605,131 @@ padding: 10px;
   max-width: 150px;
   cursor: pointer;
 }
+
+.terminal {
+  -webkit-backdrop-filter: blur(10px);
+  color: #f0f0f0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 800px;
+  height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  transition: width 300ms ease, height 300ms ease, transform 300ms ease;
+}
+
+.terminal.maximized {
+  width: 1200px;
+  height: 700px;
+}
+
+.terminal-header {
+  background: rgba(77, 77, 77, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+  margin-right: 12px;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.terminal-button.close {
+  background-color: #ff5f57;
+}
+
+.terminal-button.minimize {
+  background-color: #ffbd2e;
+}
+
+.terminal-button.maximize {
+  background-color: #28c941;
+}
+
+.terminal-title {
+  color: #cccccc;
+  font-size: 13px;
+  text-align: center;
+  flex-grow: 1;
+  margin-right: 50px;
+}
+
+.terminal-body {
+  flex: 1;
+  background: rgba(26, 26, 26, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.terminal-content {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  color: #f0f0f0;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-y: auto;
+  white-space: pre;
+}
+
+.terminal-prompt {
+  color: #5ff967;
+  margin-right: 8px;
+}
+
+.terminal-prompt::after {
+  content: "";
+}
+
+.terminal-input {
+  background: transparent;
+  color: #f0f0f0;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+}
+.terminal-input::before {
+  content: "$ ";
+  color: #5ff967;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-input::after {
+  content: "▋";
+  animation: blink 1s step-end infinite;
+  color: #f0f0f0;
+}
