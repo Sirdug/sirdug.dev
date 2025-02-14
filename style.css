@@ -624,6 +624,8 @@ padding: 10px;
   flex-direction: column;
   padding: 0;
   transition: width 300ms ease, height 300ms ease, transform 300ms ease;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136,136,136,0.5) transparent;
 }
 
 .terminal.maximized {
@@ -768,4 +770,22 @@ padding: 10px;
   bottom: 0;
   width: 100%;
   z-index: 9998;
+}
+
+/* Webkit scrollbar styling */
+#terminal-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+#terminal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#terminal-content::-webkit-scrollbar-thumb {
+  background-color: rgba(136,136,136,0.5);
+  border-radius: 10px;
+}
+
+#terminal-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(85,85,85,0.5);
 }
