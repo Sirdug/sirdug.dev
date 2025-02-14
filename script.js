@@ -114,6 +114,68 @@ setInterval(() => {
 }, 5000); // Ping every 5 seconds
 
 
+let isTerminalMaximized = false;
+let isTerminalMinimized = false;
+let originalTerminalSize = {
+    width: null,
+    height: null
+};
+
+// Add event listeners for terminal buttons
+document.querySelector('.terminal-button.maximize').addEventListener('click', () => {
+  const terminal = document.querySelector('.terminal');
+  if (!isTerminalMaximized) {
+      // Store original size
+      originalTerminalSize.width = terminal.style.width || '600px';  // Default width if not set
+      originalTerminalSize.height = terminal.style.height || '400px'; // Default height if not set
+      
+      // Increase size (1.5x larger)
+      terminal.style.width = '1100px';
+      terminal.style.height = '800px';
+      terminal.style.transition = 'all 0.3s ease';
+  } else {
+      // Restore original size
+      terminal.style.width = originalTerminalSize.width;
+      terminal.style.height = originalTerminalSize.height;
+  }
+  isTerminalMaximized = !isTerminalMaximized;
+});
+
+document.querySelector('.terminal-button.minimize').addEventListener('click', () => {
+    const terminal = document.querySelector('.terminal');
+    const terminalBody = document.querySelector('.terminal-body');
+    
+    if (!isTerminalMinimized) {
+        terminalBody.style.display = 'none';
+        terminal.style.height = 'auto';
+    } else {
+        terminalBody.style.display = 'block';
+        terminal.style.height = originalTerminalSize.height || 'auto';
+    }
+    isTerminalMinimized = !isTerminalMinimized;
+});
+
+document.querySelector('.terminal-button.close').addEventListener('click', () => {
+    const terminal = document.querySelector('.terminal');
+    terminal.style.display = 'none';
+});
+
+document.querySelector('.terminal-button.close').addEventListener('click', () => {
+  const terminal = document.querySelector('.terminal');
+  const reopenButton = document.getElementById('reopen-terminal');
+  terminal.style.display = 'none';
+  reopenButton.style.display = 'block';
+});
+
+document.getElementById('reopen-terminal').addEventListener('click', () => {
+  const terminal = document.querySelector('.terminal');
+  const reopenButton = document.getElementById('reopen-terminal');
+  terminal.style.display = 'flex';
+  reopenButton.style.display = 'none';
+});
+
+let terminalSpeed = 20;
+
 document.getElementById("terminal-input").addEventListener("keyup", function(e) {
     if (e.key === "Enter") {
         e.preventDefault();
@@ -125,7 +187,7 @@ document.getElementById("terminal-input").addEventListener("keyup", function(e) 
     }
 });
 
-function typeWriter(element, text, speed = 50) {
+function typeWriter(element, text, speed = terminalSpeed) {
     let i = 0;
     const timer = setInterval(() => {
         if (i < text.length) {
@@ -141,28 +203,44 @@ function typeWriter(element, text, speed = 50) {
 function processTerminalCommand(cmd) {
     const terminalContent = document.getElementById("terminal-content");
     const cmdLine = document.createElement("div");
+    const args = cmd.split(' ');
+    const command = args[0].toLowerCase();
+
     cmdLine.innerHTML = '<span class="terminal-prompt">user@sirdug.dev:~$</span> ' + cmd;
     terminalContent.appendChild(cmdLine);
 
-    const validCommands = ["help", "clear", "about"];
+    const validCommands = ["help", "clear", "about", "speed"];
 
-    if (!cmd) {
-        return;
-    }
+    if (!command) return;
 
-    if (validCommands.includes(cmd)) {
-        if (cmd === "help") {
+    if (validCommands.includes(command)) {
+        if (command === "speed") {
+            const speedDiv = document.createElement("div");
+            terminalContent.appendChild(speedDiv);
+            if (args[1]) {
+                const newSpeed = parseInt(args[1]);
+                if (newSpeed >= 1 && newSpeed <= 200) {
+                    terminalSpeed = newSpeed;
+                    typeWriter(speedDiv, `\nTyping speed set to ${terminalSpeed}ms`);
+                } else {
+                    typeWriter(speedDiv, "\nInvalid speed! Use a number between 1-200ms");
+                }
+            } else {
+                typeWriter(speedDiv, `\nCurrent typing speed: ${terminalSpeed}ms`);
+            }
+        } else if (command === "help") {
             const helpDiv = document.createElement("div");
             terminalContent.appendChild(helpDiv);
             const helpText = `
                 \nAvailable commands:
                 \nhelp   - Show available commands
                 \nclear  - Clear the terminal screen
-                \nabout  - Show information about Sirdug`;
-            typeWriter(helpDiv, helpText, 35);
-        } else if (cmd === "clear") {
+                \nabout  - Show information about Sirdug
+                \nspeed [1-200] - Set typing speed in milliseconds`;
+            typeWriter(helpDiv, helpText);
+        } else if (command === "clear") {
             terminalContent.innerHTML = '<span class="terminal-prompt">user@sirdug.dev:~$</span> Welcome to sirdug.dev!\n<span class="terminal-prompt">user@sirdug.dev:~$</span> Type help for a list of commands.';
-        } else if (cmd === "about") {
+        } else if (command === "about") {
             const aboutDiv = document.createElement("div");
             terminalContent.appendChild(aboutDiv);
             const aboutText = `
@@ -173,15 +251,11 @@ function processTerminalCommand(cmd) {
                 \nGitHub: sirdug
                 \nDescription: I made this junk :)
                 \n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
-            typeWriter(aboutDiv, aboutText, 35);
+            typeWriter(aboutDiv, aboutText);
         }
     } else {
         const unknownDiv = document.createElement("div");
         terminalContent.appendChild(unknownDiv);
-        typeWriter(unknownDiv, "\nCommand not found. Type 'help' for available commands.", 50);
+        typeWriter(unknownDiv, "\nCommand not found. Type 'help' for available commands.");
     }
-}
-
-function closeDropdown(dropdownId) {
-    document.getElementById(dropdownId).style.display = "none";
 }

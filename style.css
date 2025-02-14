@@ -654,6 +654,10 @@ padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.terminal-button:hover {
+  opacity: 0.8;
+}
+
 .terminal-button.close {
   background-color: #ff5f57;
 }
@@ -732,4 +736,36 @@ padding: 10px;
   content: "▋";
   animation: blink 1s step-end infinite;
   color: #f0f0f0;
+}
+
+.reopen-terminal {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.terminal-reopen-btn {
+  background: rgba(77, 77, 77, 0.8);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.terminal-reopen-btn:hover {
+  background: rgba(77, 77, 77, 0.9);
+  transform: scale(1.05);
+}
+
+.footer1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9998;
 }
